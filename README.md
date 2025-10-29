@@ -15,6 +15,18 @@
 
 ---
 
+### Name: IRIMASO MUCYO Titus
+
+### Id: 26421
+
+### Group: E
+
+### Instructor: Patrick DUSHIMIMANA
+
+### Assistant Teacher: Zakaria
+
+
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
@@ -24,11 +36,10 @@
 - [Installation](#-installation)
 - [Database Schema](#-database-schema)
 - [API Documentation](#-api-documentation)
-- [Project Structure](#-project-structure)
 - [Usage Examples](#-usage-examples)
 - [Contributing](#-contributing)
 - [License](#-license)
-- [Contact](#-contact)
+
 
 ---
 
@@ -491,7 +502,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-*Your Name*
+*Titus Mucyo*
 - GitHub: [@Titus-30](https://github.com/titus-30)
 - Email: titusmucyo693@gmail.com
 
