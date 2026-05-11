@@ -25,7 +25,16 @@
 
 ### Assistant Teacher: Zakaria
 
+## 📚 Final Exam Documentation (Phases 1-4)
 
+This project is structured according to the final exam requirements, divided into four phases:
+
+- **[PHASE 1: System Analysis and Design](PHASE_1_DOCUMENTATION.md)** - Case study (AUCA), Functional Diagrams, and UML Diagrams (Use Case, Class, Activity, Sequence, Component).
+- **[PHASE 2: Prototype and Design Patterns](PHASE_2_DOCUMENTATION.md)** - Software prototype summary, Coding standards (Google Style), and Design patterns (MVC, Repository, etc.).
+- **[PHASE 3: Dockerization and VCS](PHASE_3_DOCUMENTATION.md)** - Process to dockerize the application and Version Control System (Git) configuration.
+- **[PHASE 4: Software Test Plan](PHASE_4_DOCUMENTATION.md)** - Detailed roadmap for testing activities and specific test cases.
+
+---
 
 ## 📋 Table of Contents
 
@@ -45,7 +54,7 @@
 
 ## 🌟 Overview
 
-The *Campus Events & Club Management System* is a robust RESTful API built with Spring Boot that streamlines the management of student clubs, campus events, and user engagement at Rwanda Coding Academy (RCA). The system provides comprehensive tools for club administration, event planning, attendance tracking, and location-based user management following Rwanda's administrative hierarchy.
+The *Campus Events & Club Management System* is a robust RESTful API built with Spring Boot that streamlines the management of student clubs, campus events, and user engagement at the **Adventist University of Central Africa (AUCA)**. The system provides comprehensive tools for club administration, event planning, attendance tracking, and location-based user management following Rwanda's administrative hierarchy.
 
 ### 🎯 Problem Statement
 

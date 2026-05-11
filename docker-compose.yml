@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: campusevents_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: titus
+      POSTGRES_DB: campusevents
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: campusevents_backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/campusevents
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=titus
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
+    dns:
+      - 8.8.8.8
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: campusevents_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
