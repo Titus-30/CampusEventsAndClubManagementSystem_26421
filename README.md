@@ -19,11 +19,11 @@
 
 ### Id: 26421
 
-### Group: E
+### Group: C
 
-### Instructor: Patrick DUSHIMIMANA
+### Instructor: Jean Pierre RUTARINDWA
 
-### Assistant Teacher: Zakaria
+### Course: BEST PROGRAMMING PRACTICES AND DESIGN PATTERNS (SENG 8240)
 
 ## 📚 Final Exam Documentation (Phases 1-4)
 
