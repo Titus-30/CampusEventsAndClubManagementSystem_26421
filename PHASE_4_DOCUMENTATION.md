@@ -80,4 +80,21 @@ Testing will cover all core modules:
 -   **OS**: Windows (Development), Alpine Linux (Docker Containers).
 -   **Language**: Java 21, JavaScript (Node 20).
 -   **Database**: PostgreSQL 14.
--   **Testing Tools**: JUnit, Postman.
+-   **Testing Tools**: JUnit 5, Mockito, Postman.
+
+---
+
+## v. Tools for Tracking Issues
+
+| Tool | Purpose |
+| :--- | :--- |
+| **GitHub Issues** | Primary tool for logging, tracking, and resolving bugs and feature requests. Each issue is labeled (e.g., `bug`, `enhancement`) and linked to a commit or pull request for full traceability. |
+| **Git Commit Messages** | Serve as a secondary log — each fix is prefixed with `fix:`, `feat:`, or `refactor:` following Conventional Commits standard, making it easy to trace what was changed and why. |
+| **Console & Application Logs** | Spring Boot logs (`System.err.println`, exception stack traces) are used during development to identify runtime errors in service and repository layers. |
+
+### GitHub Issues Workflow:
+1. A bug or failed test case is identified.
+2. An Issue is created on GitHub with a descriptive title and steps to reproduce.
+3. The fix is implemented in a feature branch.
+4. The branch is merged into `main` with a commit referencing the issue (e.g., `fix: resolve club approval notification bug`).
+5. The Issue is closed automatically upon merge.

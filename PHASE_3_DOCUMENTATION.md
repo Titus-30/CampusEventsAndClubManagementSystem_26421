@@ -53,3 +53,32 @@ For this project, **Git** was chosen as the **Version Control System (VCS) of Ch
 -   **Traceability**: Every feature addition is captured with a meaningful commit message.
 -   **Safety**: Previous versions of the code can be easily restored if a bug is introduced.
 -   **Collaboration**: Multiple contributors can work on different features simultaneously using branches.
+
+---
+
+## iii. Commit History Log
+
+The following is the actual commit log from the project repository, demonstrating structured, incremental development captured throughout all four phases:
+
+```
+Commit Hash  | Message
+-------------|----------------------------------------------------------
+064f9e1      | feat: implement BCrypt password hashing for registration, login, and password reset
+1948801      | refactor: remove verbose deliberation comments in ClubService
+c2e8644      | fix: correct Mermaid diagram syntax for Use Case and Component diagrams
+a08b0c9      | Update README.md
+fd13931      | Phase 4: Software Test Plan and Quality Assurance
+eb47fe5      | Phase 3: Dockerization and Version Control System Setup
+440c5bb      | Phase 2: Prototype and Design Patterns Implementation
+c7c2ba4      | Phase 1: System Analysis and Design - Case Study: AUCA
+7030e75      | System: Initialize project structure and Docker orchestration
+574f8f5      | Create README for Campus Events & Club Management System
+```
+
+Each commit corresponds to a distinct development phase, demonstrating a clean, logical progression from project initialization through system analysis, prototyping, dockerization, and testing. This history was generated using:
+
+```bash
+git log --oneline
+```
+
+Remote Repository: `https://github.com/Titus-30/CampusEventsAndClubManagementSystem_26421.git`
