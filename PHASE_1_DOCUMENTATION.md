@@ -60,22 +60,22 @@ AUCA currently faces several challenges in managing student activities:
 Describes the interactions between users (Actors) and the system.
 
 ```mermaid
-useCaseDiagram
-    actor Student
-    actor Organizer
-    actor Admin
+graph LR
+    Student((Student))
+    Organizer((Organizer))
+    Admin((Admin))
 
-    package "Campus Events System" {
-        usecase "Register/Login" as UC1
-        usecase "Join Club" as UC2
-        usecase "View Events" as UC3
-        usecase "Register for Event" as UC4
-        usecase "Create Club" as UC5
-        usecase "Create Event" as UC6
-        usecase "Approve/Reject Club" as UC7
-        usecase "Manage Users" as UC8
-        usecase "Post Announcement" as UC9
-    }
+    subgraph System ["Campus Events System"]
+        UC1([Register / Login])
+        UC2([Join Club])
+        UC3([View Events])
+        UC4([Register for Event])
+        UC5([Create Club])
+        UC6([Create Event])
+        UC7([Approve / Reject Club])
+        UC8([Manage Users])
+        UC9([Post Announcement])
+    end
 
     Student --> UC1
     Student --> UC2
@@ -196,11 +196,19 @@ sequenceDiagram
 Shows the high-level architecture of the application.
 
 ```mermaid
-componentDiagram
-    [Web Browser (React)] ..> [API Controller] : JSON/HTTP
-    package "Spring Boot Application" {
-        [API Controller] --> [Business Logic (Service)]
-        [Business Logic (Service)] --> [Data Access (Repository)]
-    }
-    [Data Access (Repository)] ..> [PostgreSQL Database] : JDBC/SQL
+graph TD
+    Browser["🌐 Web Browser (React)"]
+
+    subgraph SpringBoot ["Spring Boot Application"]
+        Controller["API Controller"]
+        Service["Business Logic (Service)"]
+        Repository["Data Access (Repository)"]
+    end
+
+    DB[("PostgreSQL Database")]
+
+    Browser  -->|"JSON / HTTP"| Controller
+    Controller --> Service
+    Service    --> Repository
+    Repository -->|"JDBC / SQL"| DB
 ```
