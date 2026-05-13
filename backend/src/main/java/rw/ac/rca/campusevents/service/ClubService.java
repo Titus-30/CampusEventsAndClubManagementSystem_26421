@@ -36,26 +36,8 @@ public class ClubService {
             }
         }
         Club saved = clubRepository.save(club);
-        // Notify all users about new club creation (even if pending, or maybe valid only when approved? Requirement says: "when club is created show notification... like there is club with its name which is created you can join it if you wand")
-        // Assuming we notify when it is created (or maybe when approved? Let's do it on approval if it needs approval, but requirement says "when club is created". Let's assume on PENDING it's not visible yet? 
-        // Actually, if status is PENDING, maybe wait for approval. But the user said "when club is created". 
-        // Let's do it on Approval for "Join" message effectiveness, OR on Create if the user wants immediate feedback. 
-        // Given typically Students only see APPROVED clubs, I'll put the "Join it" notification on APPROVAL.
-        // BUT, the prompt says "when club or event is created show notification...". 
-        // I will follow the prompt literally: "when club is created". But if it's PENDING, students can't join. 
-        // I'll add the notification on save, but maybe modify message if pending. 
-        // Wait, for Events user said "Event is created... RSVP if you want". Event doesn't have approval status usually.
-        // For Club, let's put it on APPROVE so they can actually join. If I put it on Create (Pending), they click and cant join. 
-        // I will put it on APPROVE.
-        // Wait, prompt: "when club is created...". 
-        // If Admin creates it, it might be auto-approved (logic in controller says PENDING though).
-        // Let's stick to: When status becomes APPROVED (approveClub) -> Notify All "Club X Created, you can join".
-        // When Created (saveClub) -> Notify Admins? 
-        // I'll stick to: saveClub -> No global notification if Pending.
-        // approveClub -> Notify All "Club created/approved".
-        
-        // However, if the user explicitly asked "when club is created", I should be careful.
-        // I'll modify `approveClub` to send the "Club Created" notification to ALL users.
+        // Global notification is deferred to approveClub() so students are only
+        // notified once the club is publicly joinable (i.e., APPROVED status).
         return saved;
     }
 
