@@ -3,6 +3,7 @@ package rw.ac.rca.campusevents.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rw.ac.rca.campusevents.model.User;
 import rw.ac.rca.campusevents.service.UserService;
@@ -23,6 +24,9 @@ public class AuthController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userService.getUserByEmail(loginRequest.getEmail());
@@ -35,7 +39,8 @@ public class AuthController {
 
         User user = userOptional.get();
 
-        if (user.getPassword() == null || !user.getPassword().equals(loginRequest.getPassword())) {
+        // Verify password using BCrypt — stored hash is compared against raw input
+        if (user.getPassword() == null || !passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(createErrorResponse("Invalid email or password"));
@@ -142,7 +147,8 @@ public class AuthController {
         }
 
         User user = userOptional.get();
-        user.setPassword(request.getNewPassword());
+        // Hash the new password before saving
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userService.updateUser(user);
 
         Map<String, Object> response = new HashMap<>();

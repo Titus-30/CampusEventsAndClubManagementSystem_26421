@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import rw.ac.rca.campusevents.model.User;
 import rw.ac.rca.campusevents.repository.UserRepository;
 
@@ -19,6 +20,9 @@ public class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
 
     @InjectMocks
     private UserService userService;
@@ -40,11 +44,13 @@ public class UserServiceTest {
     void saveUser_Success() {
         when(userRepository.existsByEmail(user.getEmail())).thenReturn(false);
         when(userRepository.existsByPhoneNumber(user.getPhoneNumber())).thenReturn(false);
+        when(passwordEncoder.encode(user.getPassword())).thenReturn("$2a$10$hashedpassword");
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         String result = userService.saveUser(user);
 
         assertEquals("User saved successfully", result);
+        verify(passwordEncoder, times(1)).encode("password123");
         verify(userRepository, times(1)).save(user);
     }
 

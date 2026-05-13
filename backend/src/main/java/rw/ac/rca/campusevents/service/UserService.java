@@ -3,6 +3,7 @@ package rw.ac.rca.campusevents.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import rw.ac.rca.campusevents.model.User;
 import rw.ac.rca.campusevents.model.Location;
@@ -15,9 +16,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private LocationService locationService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private rw.ac.rca.campusevents.repository.NotificationRepository notificationRepository;
@@ -55,6 +59,8 @@ public class UserService {
         }
 
         try {
+            // Hash password before persisting — never store plaintext
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             return "User saved successfully";
         } catch (org.springframework.dao.DataAccessException dae) {
@@ -91,9 +97,9 @@ public class UserService {
                 existingUser.setEmail(user.getEmail());
             }
 
-            // Only update password if provided and not empty
+            // Only update password if provided — hash before saving
             if (user.getPassword() != null && !user.getPassword().isBlank()) {
-                existingUser.setPassword(user.getPassword());
+                existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
             }
             
             // Preserve other fields automatically because we are saving 'existingUser'
