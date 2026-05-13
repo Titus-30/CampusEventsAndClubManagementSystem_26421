@@ -147,8 +147,8 @@ public class AuthController {
         }
 
         User user = userOptional.get();
-        // Hash the new password before saving
-        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        // Pass the new password directly; userService.updateUser() will handle the hashing
+        user.setPassword(request.getNewPassword());
         userService.updateUser(user);
 
         Map<String, Object> response = new HashMap<>();
